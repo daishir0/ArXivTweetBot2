@@ -1,6 +1,9 @@
 # ArXivTweetBot2
 
 ## Overview
+
+![screen shot](image.png)
+
 ArXivTweetBot2 is an automated system that searches for research papers on arXiv based on specified keywords, downloads them, generates easy-to-understand summaries using OpenAI's GPT models, and posts these summaries to Twitter. It also creates a web interface to browse all the summarized papers, organized by date.
 
 The system is designed to run daily via a cron job, searching for new papers matching your configured keywords, and making cutting-edge research accessible to a broader audience through simplified explanations.

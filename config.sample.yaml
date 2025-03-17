@@ -1,0 +1,65 @@
+# ArXivTweetBot2 Configuration Sample
+# Rename this file to config.yaml and fill in your actual credentials and settings
+
+# OpenAI API Configuration
+# Get your API key from: https://platform.openai.com/api-keys
+openai:
+  api_key: "your-openai-api-key-here"  # Required for generating summaries
+
+# Twitter API Configuration
+# Get your credentials from: https://developer.twitter.com/en/portal/dashboard
+twitter:
+  # OAuth 1.0a credentials (for v1.1 API)
+  api_key: "your-twitter-api-key"
+  api_key_secret: "your-twitter-api-key-secret"
+  access_token: "your-twitter-access-token"
+  access_token_secret: "your-twitter-access-token-secret"
+  bearer_token: "your-twitter-bearer-token"
+  
+  # OAuth 2.0 credentials (for v2 API)
+  client_id: "your-twitter-client-id"
+  client_secret: "your-twitter-client-secret"
+
+# Prompt Configuration
+prompt:
+  # Template for generating paper summaries
+  # {論文テキスト} will be replaced with the actual paper text
+  template: "あなたは研究者です。{論文テキスト}を、中学生が興味を持ってくれるように、論文の新規性を面白く紹介する文章を230文字以内で作成してください。テンション高く、ゆるキャラ風の文体で書いてください。絵文字も使って良いです。"
+  
+  # Greeting prefix for tweets
+  greeting: "C(・ω・ )つ みんなー！"
+
+# Web Output Configuration
+web:
+  # Directory where the web interface will be generated
+  # This should be a directory served by your web server
+  output_dir: "/var/www/html/arXiv"
+
+# Search Sets Definition
+# You can define multiple search sets with different keywords and settings
+search_sets:
+  # Example 1: Search for LLM papers
+  - keywords:
+      - "LLM"  # Single keyword
+    output_dir: "/var/www/html/arXiv/llm"  # Web output directory for this search set
+    max_results: 100  # Maximum number of papers to retrieve
+    tweet_enabled: false  # Whether to post to Twitter (true/false)
+
+  # Example 2: Search for papers with multiple keywords (AND logic)
+  - keywords:
+      - "LLM"
+      - "RAG"
+    output_dir: "/var/www/html/arXiv/llm_rag"
+    max_results: 100
+    tweet_enabled: false
+
+  # Add more search sets as needed
+  # - keywords:
+  #     - "your-keyword"
+  #   output_dir: "/path/to/output/directory"
+  #   max_results: 100
+  #   tweet_enabled: true
+
+# Execution Settings
+execution:
+  wait_between_sets: 10  # Wait time between search sets in seconds

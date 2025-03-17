@@ -1,0 +1,11 @@
+dl/
+logs/
+processed/
+summary/
+text/
+pdf/
+config.yaml
+__pycache__
+nohup.out
+last_run_timestamp.json
+processed_paper_ids.txt

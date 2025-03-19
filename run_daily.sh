@@ -63,17 +63,9 @@ echo "" | tee -a "$EXEC_LOG"
 
 # Anaconda環境を有効化
 echo "Anaconda環境を有効化中..." | tee -a "$EXEC_LOG"
-if [ -f "$CONDA_PROFILE" ]; then
-    # conda.shが存在する場合はそれを使用
-    source "$CONDA_PROFILE"
-    conda activate base 2>&1 | tee -a "$EXEC_LOG"
-    PYTHON_CMD="python3"
-    echo "Anaconda環境を有効化しました。" | tee -a "$EXEC_LOG"
-else
-    # conda.shが見つからない場合は直接パスを指定
-    PYTHON_CMD="$CONDA_PATH/bin/python3"
-    echo "conda.shが見つかりません。直接Pythonパスを使用します: $PYTHON_CMD" | tee -a "$EXEC_LOG"
-fi
+# cronでも確実に動作するように、直接Anacondaのpythonパスを使用
+PYTHON_CMD="$CONDA_PATH/bin/python"
+echo "Anaconda環境を有効化しました。" | tee -a "$EXEC_LOG"
 
 # Pythonバージョンを確認
 echo "Pythonバージョン:" | tee -a "$EXEC_LOG"
